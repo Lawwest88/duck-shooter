@@ -11,7 +11,7 @@ pygame.display.set_caption("Duck Shooter")
 #loading images 
 BLUE_JOEL_SPACE_SHIP = pygame.image.load(os.path.join("assets","pixel_ship_blue_joel_small.png"))
 
-#player 
+#player player
 DUCK_SPACE_player = pygame.image.load(os.path.join("assets","pixel_ship_duck.png"))
 
 #lasers
@@ -44,7 +44,7 @@ class Laser:
 class Ship:
     COOLDOWN = 30
 
-def __init__(self, x, y, health=100):
+    def __init__(self, x, y, health=100):
         self.x = x
         self.y = y
         self.health = health
@@ -53,12 +53,12 @@ def __init__(self, x, y, health=100):
         self.lasers = []
         self.cool_down_counter = 0
 
-def draw(self, window):
+    def draw(self, window):
         window.blit(self.ship_img, (self.x, self.y))
         for laser in self.lasers:
             laser.draw(window)
 
-def move_lasers(self, vel, obj):
+    def move_lasers(self, vel, obj):
         self.cooldown()
         for laser in self.lasers:
             laser.move(vel)
@@ -68,22 +68,22 @@ def move_lasers(self, vel, obj):
                 obj.health -= 10
                 self.lasers.remove(laser)
 
-def cooldown(self):
+    def cooldown(self):
         if self.cool_down_counter >= self.COOLDOWN:
             self.cool_down_counter = 0
         elif self.cool_down_counter > 0:
             self.cool_down_counter += 1
 
-def shoot(self):
+    def shoot(self):
         if self.cool_down_counter == 0:
             laser = Laser(self.x, self.y, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 1
 
-def get_width(self):
+    def get_width(self):
         return self.ship_img.get_width()
 
-def get_height(self):
+    def get_height(self):
         return self.ship_img.get_height()
 
 class Player(Ship):
@@ -119,7 +119,8 @@ class Player(Ship):
 
 
 class Enemy(Ship):
-    def __init__(self, x, y, blue, health=100):
+    def __init__(self, x, y, health=100):
+
         super().__init__(x, y, health)
         self.ship_img = BLUE_JOEL_SPACE_SHIP
         self.laser_img = JOEL_LASER
