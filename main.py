@@ -1,4 +1,3 @@
-from operator import truediv
 import pygame
 import os
 import time
